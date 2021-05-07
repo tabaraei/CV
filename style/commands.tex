@@ -1,10 +1,39 @@
-% Sections formatting
-\titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\vspace{-5pt}\color{pink}\rule{5cm}{0.7mm} \color{grey}\rule{13.8cm}{0.7mm}]
+%--------------------- Commands --------------------
 
 % Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
+
+% colorbox -----------------------------------------
+\newtcbox{\roundbox}{
+    colback=greyLight,
+    colframe=white,
+    sharp corners,
+    rounded corners=southeast,
+    arc=2mm,
+    left=50pt,
+    right=15pt,
+    top=10pt,
+    bottom=10pt
+}
+\newcommand{\cbox}[1] {
+    \begin{adjustwidth}{-40pt}{}
+    \roundbox{\textbf{\LARGE{#1}}} 
+    \end{adjustwidth}
+}
+
+
+% social -------------------------------------------
+\newcommand{\social}[2]{
+    \textbf{#1:} \textsf{#2} \\
+}
+
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\vspace{-5pt}\color{pink}\rule{5cm}{0.7mm} \color{grey}\rule{13.3cm}{0.7mm}]
+
+
 
 %-------------------------
 % Custom commands
@@ -43,4 +72,4 @@
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}} 
