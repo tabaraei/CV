@@ -3,8 +3,11 @@
 % Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
 
+% links --------------------------------------------
+\newcommand{\bracketlink}[2]{\color{pinkDark}[\underline{\href{#1}{#2}}]}
+
 % colorbox -----------------------------------------
-\newtcbox{\roundbox}{
+\newtcbox{\clbox}{
     colback=greyLight,
     colframe=white,
     sharp corners,
@@ -15,9 +18,9 @@
     top=10pt,
     bottom=10pt
 }
-\newcommand{\cbox}[1] {
+\newcommand{\coloredbox}[1] {
     \begin{adjustwidth}{-40pt}{}
-    \roundbox{\textbf{\LARGE{#1}}} 
+    \clbox{\textbf{\LARGE{#1}}}
     \end{adjustwidth}
 }
 
@@ -28,36 +31,48 @@
 }
 
 
-% Sections formatting
-\titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\vspace{-5pt}\color{pink}\rule{5cm}{0.7mm} \color{grey}\rule{13.3cm}{0.7mm}]
-
-
-
-%-------------------------
-% Custom commands
-\newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
+% section formatting -------------------------------
+\newlength{\sectiontitlewd}
+\newcommand{\makesectiontitle}[1]{%
+  \settowidth{\dimen0}{#1}%
+  \global\sectiontitlewd=\dimen0
+  #1%
 }
+\titleformat{\section}
+ {\vspace{-4pt}\large\scshape\filright}
+ {}
+ {0em}
+ {\makesectiontitle}
+ [%
+  \vspace{-5pt}%
+  \color{pink}\rule{\sectiontitlewd}{0.7mm}\hspace{0.33333em}%
+  \color{grey}\rule{\dimexpr\textwidth-\sectiontitlewd-0.33333em}{0.7mm}%
+  %\color{pink}\rule{5cm}{0.7mm}
+  %\color{grey}\rule{13.3cm}{0.7mm}
+ ]
 
+
+% custom commands ----------------------------------
+% subheading
 \newcommand{\resumeSubheading}[4]{
   \vspace{-2pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
+      #1 & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
     \end{tabular*}\vspace{-7pt}
 }
-
 \newcommand{\resumeSubSubheading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \textit{\small#1} & \textit{\small #2} \\
     \end{tabular*}\vspace{-7pt}
+    \vspace{5pt}
 }
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{5pt}}
 
+
+% project heading
 \newcommand{\resumeProjectHeading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
@@ -65,11 +80,40 @@
     \end{tabular*}\vspace{-7pt}
 }
 
+
+% bullet item
+\newcommand{\resumeItem}[1]{
+    \item\small{
+        \begin{justify}
+            {#1 \vspace{-2pt}}
+        \end{justify}
+    }
+}
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
-
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}} 
+\newcommand{\resumeItemListStartDash}{\begin{itemize}[label={\textendash}]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+% skills
+\newtcbox{\skbox}{
+    colback=white,
+    colframe=pinkDark,
+    nobeforeafter,
+    rounded corners,
+    height=15pt,
+    arc=1mm,
+    boxrule=0.2pt,
+    left=0pt,
+    right=0pt,
+    top=1pt,
+    bottom=0pt
+}
+\newcommand{\skillbox}[1] {
+    \hspace{-10pt}
+    \skbox{\small{#1}}
+}
+\newcommand{\resumeSkillItemStart}[1]{
+        \textbf{#1} \\[5pt]
+        \hspace{10pt}
+} 
