@@ -1,6 +1,4 @@
 %--------------------- Commands --------------------
-
-% Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
 
 % links --------------------------------------------
@@ -53,47 +51,14 @@
 
 
 % custom commands ----------------------------------
-% subheading
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      #1 & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
-}
-\newcommand{\resumeSubSubheading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-7pt}
-    \vspace{5pt}
-}
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{5pt}}
-
-
-% project heading
-\newcommand{\resumeProjectHeading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-
-% bullet item
-\newcommand{\resumeItem}[1]{
+% item
+\newcommand{\Item}[1]{
     \item\small{
         \begin{justify}
             {#1 \vspace{-2pt}}
         \end{justify}
     }
 }
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
-\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListStartDash}{\begin{itemize}[label={\textendash}]}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 % skills
 \newtcbox{\skbox}{
@@ -114,6 +79,31 @@
     \skbox{\small{#1}}
 }
 \newcommand{\resumeSkillItemStart}[1]{
-        \textbf{#1} \\[5pt]
-        \hspace{10pt}
-} 
+    \vspace{8pt}
+    \textbf{#1} \\[5pt]
+    \hspace{10pt}
+}
+
+
+% List with no leftmargin
+\newcommand{\ListStartLineSimple}[1][0.15]{\begin{itemize}[label={}, leftmargin=#1in]} %0.23
+\newcommand{\ListStartLineBullet}[1][0.38]{\begin{itemize}[label=\textbullet, leftmargin=#1in]}
+\newcommand{\ListStartLineBulletTiny}[1][0.38]{\begin{itemize}[label=\tiny\textbullet, leftmargin=#1in]}
+\newcommand{\ListStartLineDash}[1][0.38]{\begin{itemize}[label=\textendash, leftmargin=#1in]}
+
+% List with leftmargin
+\newcommand{\ListStartSimple}[1][0.15]{\begin{itemize}[label={}, leftmargin=#1in]}
+\newcommand{\ListStartBullet}[1][0.15]{\begin{itemize}[label=\textbullet, leftmargin=#1in]}
+\newcommand{\ListStartBulletTiny}[1][0.15]{\begin{itemize}[label=\tiny\textbullet, leftmargin=#1in]}
+\newcommand{\ListStartDash}[1][0.15]{\begin{itemize}[label=\textendash, leftmargin=#1in]}
+\newcommand{\ListAsterisk}[1][0.15]{\begin{itemize}[label=\textasteriskcentered, leftmargin=#1in]}
+\newcommand{\ListPeriod}[1][0.15]{\begin{itemize}[label=\textperiodcentered, leftmargin=#1in]}
+\newcommand{\ListEnd}[1][-5]{\end{itemize}\vspace{#1pt}}
+
+% timeline
+\newcommand{\timeline}[5][{}]{
+    \Item{
+        \textbf{#2} \hfill #3 \\
+        \emph{#4} {#1} \hfill \emph{#5}\hspace{-6pt}
+    }
+}
