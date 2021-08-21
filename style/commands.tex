@@ -84,6 +84,15 @@
     \hspace{10pt}
 }
 
+% multicolumn
+\newcommand{\MulticolStart}{
+\begin{varwidth}[t]{.33\textwidth}
+    \ListStartLineBullet
+}
+\newcommand{\MulticolEnd}{
+    \ListEnd
+\end{varwidth}
+}
 
 % List with no leftmargin
 \newcommand{\ListStartLineSimple}[1][0.15]{\begin{itemize}[label={}, leftmargin=#1in]} %0.23
